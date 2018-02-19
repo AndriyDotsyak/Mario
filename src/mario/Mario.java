@@ -9,7 +9,9 @@ import java.io.IOException;
 
 public class Mario extends Canvas implements Runnable {
     private boolean running;
-    public static Sprite sbeckground;
+
+    public static Sprite beckground;
+    public static Sprite marioDefault;
 
     @Override
     public void run() {
@@ -32,7 +34,8 @@ public class Mario extends Canvas implements Runnable {
     }
 
     public void init() {
-        sbeckground = getSprite("Sprites/Background.jpg");
+        beckground = getSprite("Sprites/Background.jpg");
+        marioDefault = getSprite("Sprites/MarioDefault.png");
     }
 
     public void render() {
@@ -46,7 +49,8 @@ public class Mario extends Canvas implements Runnable {
 
         Graphics graphics = bs.getDrawGraphics();
         graphics.fillRect(0, 0, getWidth(), getHeight());
-        sbeckground.draw(graphics, 0, 0);
+        beckground.draw(graphics, 0, 0);
+        marioDefault.draw(graphics, 402, 374);
         graphics.dispose();
         bs.show();
     }
@@ -59,7 +63,7 @@ public class Mario extends Canvas implements Runnable {
         BufferedImage sourceImage = null;
 
         try {
-            sourceImage = ImageIO.read(new File("Sprites/Background.jpg"));
+            sourceImage = ImageIO.read(new File(path));
         } catch (IOException e) {
             e.printStackTrace();
         }

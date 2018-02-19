@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e1b3954-d446-4ed7-b552-f70239b1fb8a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Sprites/Background.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Mario/mario/Sprite.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mario/Sprite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mario/mario/Main.class" afterPath="$PROJECT_DIR$/out/production/Mario/mario/Main.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Sprites/MarioDefault.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Sprites/MarioLeft.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Sprites/MarioRigth.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Sprites/MarioUp.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Mario/mario/Mario.class" afterPath="$PROJECT_DIR$/out/production/Mario/mario/Mario.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mario/Main.java" afterPath="$PROJECT_DIR$/src/mario/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mario/Mario.java" afterPath="$PROJECT_DIR$/src/mario/Mario.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -36,12 +35,10 @@
       <file leaf-file-name="Mario.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mario/Mario.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="46" column="49" lean-forward="false" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
+            <state relative-caret-position="395">
+              <caret line="52" column="44" lean-forward="false" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
-                <element signature="e#823#824#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -364,8 +361,6 @@
           <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
-            <element signature="e#823#824#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -401,14 +396,22 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Sprites/MarioDefault.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sprites/MarioUp.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/mario/Mario.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="46" column="49" lean-forward="false" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
+        <state relative-caret-position="395">
+          <caret line="52" column="44" lean-forward="false" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
-            <element signature="e#823#824#0" expanded="true" />
           </folding>
         </state>
       </provider>
