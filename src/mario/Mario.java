@@ -10,8 +10,13 @@ import java.io.IOException;
 public class Mario extends Canvas implements Runnable {
     private boolean running;
 
-    public static Sprite beckground;
-    public static Sprite marioDefault;
+    public Sprite beckground;
+    public Sprite marioDefault;
+
+    private int marioX = 402;
+    private int marioY = 374;
+
+    boolean up = true;
 
     @Override
     public void run() {
@@ -36,6 +41,8 @@ public class Mario extends Canvas implements Runnable {
     public void init() {
         beckground = getSprite("Sprites/Background.jpg");
         marioDefault = getSprite("Sprites/MarioDefault.png");
+
+        addKeyListener(new KeyInputHandler());
     }
 
     public void render() {
@@ -50,13 +57,37 @@ public class Mario extends Canvas implements Runnable {
         Graphics graphics = bs.getDrawGraphics();
         graphics.fillRect(0, 0, getWidth(), getHeight());
         beckground.draw(graphics, 0, 0);
-        marioDefault.draw(graphics, 402, 374);
+        marioDefault.draw(graphics, marioX, marioY);
         graphics.dispose();
         bs.show();
     }
 
     public void update(long delta) {
+        if (KeyInputHandler.upPressed) {
 
+            if (marioY >= 320 && up == true) {
+                marioY--;
+                if (marioY == 320) up = false;
+            } else if (marioY <= 374) {
+                marioY++;
+                if (marioY == 374) {
+                    up = true;
+                    KeyInputHandler.upPressed = false;
+                }
+            }
+        }
+
+        if (KeyInputHandler.leftPressed) {
+            if (marioX >= 0) {
+                marioX--;
+            }
+        }
+
+        if (KeyInputHandler.rigthPressed) {
+            if (marioX <= 747) {
+                marioX++;
+            }
+        }
     }
 
     public Sprite getSprite(String path) {
