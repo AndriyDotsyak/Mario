@@ -4,19 +4,24 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.*;
 
 public class Mario extends Canvas implements Runnable {
     private boolean running;
+    private boolean openDrawer = false;
+    boolean up = true;
 
-    public Sprite beckground;
-    public Sprite marioDefault;
+    private Sprite beckground;
+    private Sprite mario;
+    private Sprite faifly;
 
     private int marioX = 402;
     private int marioY = 374;
 
-    boolean up = true;
+    private int drawerY = 258;
 
     @Override
     public void run() {
@@ -33,19 +38,22 @@ public class Mario extends Canvas implements Runnable {
         }
     }
 
-    public void start() {
+    void start() {
         running = true;
         new Thread(this).start();
+
+        sound();
     }
 
-    public void init() {
+    private void init() {
         beckground = getSprite("Sprites/Background.jpg");
-        marioDefault = getSprite("Sprites/MarioDefault.png");
+        mario = getSprite("Sprites/MarioDefault.png");
+        faifly = getSprite("Sprites/Faifly.png");
 
         addKeyListener(new KeyInputHandler());
     }
 
-    public void render() {
+    private void render() {
         BufferStrategy bs = getBufferStrategy();
 
         if (bs == null) {
@@ -57,17 +65,28 @@ public class Mario extends Canvas implements Runnable {
         Graphics graphics = bs.getDrawGraphics();
         graphics.fillRect(0, 0, getWidth(), getHeight());
         beckground.draw(graphics, 0, 0);
-        marioDefault.draw(graphics, marioX, marioY);
+        mario.draw(graphics, marioX, marioY);
+        if (openDrawer) faifly.draw(graphics, 396, drawerY);
         graphics.dispose();
         bs.show();
     }
 
     public void update(long delta) {
+        if (!KeyInputHandler.upPressed && !KeyInputHandler.leftPressed && !KeyInputHandler.rigthPressed) {
+            mario = getSprite("Sprites/MarioDefault.png");
+        }
+
         if (KeyInputHandler.upPressed) {
 
-            if (marioY >= 320 && up == true) {
+            if (marioY >= 320 && up) {
                 marioY--;
-                if (marioY == 320) up = false;
+                if (marioY == 320) {
+                    up = false;
+
+                    if (marioX >= 385 && marioX <= 425) {
+                        openDrawer = true;
+                    }
+                }
             } else if (marioY <= 374) {
                 marioY++;
                 if (marioY == 374) {
@@ -75,22 +94,30 @@ public class Mario extends Canvas implements Runnable {
                     KeyInputHandler.upPressed = false;
                 }
             }
+
+            mario = getSprite("Sprites/MarioUp.png");
         }
 
         if (KeyInputHandler.leftPressed) {
             if (marioX >= 0) {
                 marioX--;
+                mario = getSprite("Sprites/MarioLeft.png");
             }
         }
 
         if (KeyInputHandler.rigthPressed) {
             if (marioX <= 747) {
                 marioX++;
+                mario = getSprite("Sprites/MarioRigth.png");
             }
+        }
+
+        if (openDrawer && drawerY >= 210) {
+            drawerY--;
         }
     }
 
-    public Sprite getSprite(String path) {
+    private Sprite getSprite(String path) {
         BufferedImage sourceImage = null;
 
         try {
@@ -102,5 +129,20 @@ public class Mario extends Canvas implements Runnable {
         Sprite sprite = new Sprite(Toolkit.getDefaultToolkit().createImage(sourceImage.getSource()));
 
         return sprite;
+    }
+
+    private void sound() {
+        try {
+            File file = new File("Sound/SoundMario.mp3");
+
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+
+            Player player = new Player(bis);
+            player.play();
+
+        } catch (IOException | JavaLayerException ioe) {
+
+        }
     }
 }
